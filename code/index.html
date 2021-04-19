@@ -9,21 +9,32 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin=""/>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
     <script language="javascript" type="text/javascript" src="scripts/utilities.js"></script> 
-    <style>
-        #mapid { height: 35%;
-            width: 20%;
-            position: fixed;
-            bottom: 0;
-            right: 0;
-        }
-    </style>
 </head>
 <body>
     <div id='mapid'></div>
-    <script language="javascript" type="text/javascript" src="scripts/map.js"></script> 
+    <script language="javascript" type="text/javascript" src="scripts/map.js"></script>
+    <button onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
+    <div id='player_panels'>
+        <span class="letters" id="player1">Player1</span>
+        <span class="letters" id="player2">Player2</span>
+        <span class="letters" id="player3">Player3</span>
+        <span class="letters" id="player4">Player4</span>
+        <span class="letters" id="player5">Player5</span>
+        <span class="letters" id="player6">Player6</span>
+        <span class="letters" id="player7">Player7</span>
+        <span class="letters" id="player8">Player8</span>
+    </div>
+    <div id='result_screen' class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p id="test"></p>
+        </div>
+      </div>
 </body>
 </html>
