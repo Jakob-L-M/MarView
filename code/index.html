@@ -15,11 +15,13 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
     <script language="javascript" type="text/javascript" src="scripts/utilities.js"></script>
-    <script src="js/three.min.js"></script>
-    <script src="js/panolens.min.js"></script>
+    <script language="javascript" type="text/javascript" src="lib/three.min.js"></script>
+    <script language="javascript" type="text/javascript" src="lib/panolens.min.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/pano.js" defer></script>
 </head>
 
 <body>
+    <div id="pano"></div>
     <div id='mapid'></div>
     <script language="javascript" type="text/javascript" src="scripts/map.js"></script>
     <button onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
@@ -34,7 +36,7 @@
         <span class="letters" id="player8">Player8</span>
     </div>
     <div id='result_screen' class="modal">
-
+        
         <!-- Modal content -->
         <div class="modal-content">
             <p id="test"></p>
