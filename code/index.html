@@ -14,11 +14,13 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-    <script language="javascript" type="text/javascript" src="scripts/utilities.js"></script>
-    <script language="javascript" type="text/javascript" src="lib/three.min.js"></script>
-    <script language="javascript" type="text/javascript" src="lib/panolens.min.js"></script>
+    
+        <script language="javascript" type="text/javascript" src="lib/view360.panoviewer.pkgd.min.js"></script>
     <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
+
+    <script language="javascript" type="text/javascript" src="scripts/utilities.js"></script>
     <script language="javascript" type="text/javascript" src="scripts/pano.js" defer></script>
+    
     <script type="text/javascript" src="data_control.json"></script>
 </head>
 
@@ -31,9 +33,9 @@
     <button id="start_button" onclick="next_round()" class="button">Start</button>
 
     <script language="javascript" type="text/javascript" src="scripts/map.js" defer></script>
-    
+
     <button id="guess_button" onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
-    
+
     <div id='player_panels'>
         <span class="letters" id="player1">Player1</span>
         <span class="letters" id="player2">Player2</span>
