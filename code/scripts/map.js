@@ -16,13 +16,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoibWliYXNlciIsImEiOiJjamphdWZxeTgzMTBuM3BvaGdvdGhidDlzIn0.W6MiurHvSwBs0LvTfEtdrQ',
 }).addTo(map);
 
-var latlngs = [
-    [45.51, -122.68],
-    [37.77, -122.43],
-    [34.04, -118.2]
-];
-
-
 function onMapClick(e) {
     if (curr_marker != undefined) {
         curr_marker.setLatLng(e.latlng)
@@ -32,6 +25,16 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
+
+var result_map = L.map(document.getElementById('result_map'))
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/outdoors-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibWliYXNlciIsImEiOiJjamphdWZxeTgzMTBuM3BvaGdvdGhidDlzIn0.W6MiurHvSwBs0LvTfEtdrQ',
+}).addTo(result_map);
 
 function lock_guess() {
     if (curr_marker != undefined) {
@@ -43,28 +46,48 @@ function lock_guess() {
             result = `${(dist * 1000).toFixed(1)}m`
         }
         modal = document.getElementById('result_screen');
-        // When the user clicks the button, open the modal 
-        modal.style.display = "block";
 
-        var result_map = L.map(document.getElementById('result_map')).setView(pos_goal, 14);
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/outdoors-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1IjoibWliYXNlciIsImEiOiJjamphdWZxeTgzMTBuM3BvaGdvdGhidDlzIn0.W6MiurHvSwBs0LvTfEtdrQ',
-        }).addTo(result_map);
+        modal.style.display = "block";
+        modal.style.visibility = 'visible'
+
+        clear_map(result_map)
+        result_map.setView(pos_goal, 14);
 
         L.marker(pos_goal).addTo(result_map);
         L.marker(curr_marker._latlng).addTo(result_map);
         L.polyline([pos_goal, curr_marker._latlng], {
             color: 'blue',
-            dashArray: '6, 6',
-            opacity: 0.6,
+            dashArray: '6, 12',
+            opacity: 0.4,
             weight: 2
         }).addTo(result_map);
 
         document.getElementById('test').innerHTML = `Marker ist ${result} vom Ziel entfernt`
     }
+}
+
+function next_round() {
+
+    $.getJSON("data_control.json", function (data) {
+        const length = data.length;
+        const rnd = Math.floor(Math.random() * length) + 1;
+        info = data[rnd - 1]
+        display_pano(rnd)
+        console.log(rnd)
+        pos_goal = [info['lat'], info['lng']]
+    });
+}
+
+function clear_map(map) {
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer)
+    });
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/outdoors-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoibWliYXNlciIsImEiOiJjamphdWZxeTgzMTBuM3BvaGdvdGhidDlzIn0.W6MiurHvSwBs0LvTfEtdrQ',
+    }).addTo(map);
 }

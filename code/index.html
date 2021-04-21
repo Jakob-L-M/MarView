@@ -17,14 +17,23 @@
     <script language="javascript" type="text/javascript" src="scripts/utilities.js"></script>
     <script language="javascript" type="text/javascript" src="lib/three.min.js"></script>
     <script language="javascript" type="text/javascript" src="lib/panolens.min.js"></script>
+    <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="scripts/pano.js" defer></script>
+    <script type="text/javascript" src="data_control.json"></script>
 </head>
 
 <body>
+
     <div id="pano"></div>
+
     <div id='mapid'></div>
-    <script language="javascript" type="text/javascript" src="scripts/map.js"></script>
-    <button onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
+
+    <button id="start_button" onclick="next_round()" class="button">Start</button>
+
+    <script language="javascript" type="text/javascript" src="scripts/map.js" defer></script>
+    
+    <button id="guess_button" onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
+    
     <div id='player_panels'>
         <span class="letters" id="player1">Player1</span>
         <span class="letters" id="player2">Player2</span>
@@ -36,12 +45,11 @@
         <span class="letters" id="player8">Player8</span>
     </div>
     <div id='result_screen' class="modal">
-        
-        <!-- Modal content -->
         <div class="modal-content">
             <p id="test"></p>
         </div>
         <div id="result_map"></div>
+        <button id="next_button" onclick="next_round()" class="button">Nächste Runde</button>
     </div>
 </body>
 
