@@ -53,13 +53,22 @@ function lock_guess() {
         clear_map(result_map)
         result_map.setView(pos_goal, 14);
 
-        L.marker(pos_goal).addTo(result_map);
-        L.marker(curr_marker._latlng).addTo(result_map);
+        const color = 'F44336'
+        L.marker(pos_goal, {icon: L.icon( {
+            iconUrl: '..//..//assets/goal.png',
+            iconSize: [48, 48],
+            iconAnchor: [24, 24]
+        })}).addTo(result_map);
+        L.marker(curr_marker._latlng, {icon: L.icon( {
+            iconUrl: `..//..//assets/${color}.png`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+        })}).addTo(result_map);
         L.polyline([pos_goal, curr_marker._latlng], {
-            color: 'blue',
+            color: `#${color}`,
             dashArray: '6, 12',
-            opacity: 0.4,
-            weight: 2
+            opacity: 1,
+            weight: 3
         }).addTo(result_map);
 
         document.getElementById('test').innerHTML = `Marker ist ${result} vom Ziel entfernt`
