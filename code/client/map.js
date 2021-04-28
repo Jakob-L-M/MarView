@@ -3,8 +3,11 @@ var map = L.map(document.getElementById('mapid')).setView([50.80344938458088, 8.
 // Current guessing marker
 var curr_marker
 
+// player color
+const color = 'F44336'
+
 // Real Coordinate of picture
-var pos_goal = [50.79866043515019, 8.762314364220718];
+var pos_goal
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -20,7 +23,11 @@ function onMapClick(e) {
     if (curr_marker != undefined) {
         curr_marker.setLatLng(e.latlng)
     } else {
-        curr_marker = L.marker(e.latlng).addTo(map);
+        curr_marker = L.marker(e.latlng, {icon: L.icon( {
+            iconUrl: `..//..//assets/${color}.png`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+        })}).addTo(map);
     }
 }
 
@@ -53,17 +60,18 @@ function lock_guess() {
         clear_map(result_map)
         result_map.setView(pos_goal, 14);
 
-        const color = 'F44336'
         L.marker(pos_goal, {icon: L.icon( {
             iconUrl: '..//..//assets/goal.png',
             iconSize: [48, 48],
             iconAnchor: [24, 24]
         })}).addTo(result_map);
+
         L.marker(curr_marker._latlng, {icon: L.icon( {
             iconUrl: `..//..//assets/${color}.png`,
             iconSize: [32, 32],
             iconAnchor: [16, 16]
         })}).addTo(result_map);
+        
         L.polyline([pos_goal, curr_marker._latlng], {
             color: `#${color}`,
             dashArray: '6, 12',
@@ -75,14 +83,10 @@ function lock_guess() {
     }
 }
 
-function next_round() {
-
+function next_round(id) {
     $.getJSON("data_control.json", function (data) {
-        const length = data.length;
-        const rnd = Math.floor(Math.random() * length) + 1;
-        info = data[rnd - 1]
-        display_pano(rnd)
-        console.log(rnd)
+        info = data[id - 1]
+        display_pano(id)
         pos_goal = [info['lat'], info['lng']]
     });
 }
