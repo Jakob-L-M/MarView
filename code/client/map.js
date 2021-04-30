@@ -83,10 +83,10 @@ function lock_guess() {
     }
 }
 
-function next_round(id) {
+function next_round(id, link) {
     $.getJSON("data_control.json", function (data) {
         info = data[id - 1]
-        display_pano(id)
+        display_pano(id, link)
         pos_goal = [info['lat'], info['lng']]
     });
 }

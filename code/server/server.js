@@ -1,8 +1,10 @@
 const http = require('http');
+var https = require('https');
 const express = require('express');
 const socketio = require('socket.io');
 const { text } = require('express');
-var $ = require( "jquery" );
+var $ = require("jquery");
+var gcloud = require('./gcloud.js')
 
 const app = express();
 //number of pictures
@@ -23,8 +25,11 @@ io.on('connection', (socket) => {
 
     socket.on('start_round', () => {
         const rnd = Math.floor(Math.random() * pic_n) + 1;
-
-        io.emit('start_round', rnd)
+        
+        gcloud.gcloud('11q8gVBJ7XPksi-L5Hd12a58QaCirdMOQ', 4096, '1').then(link => {
+            console.log(link)
+            io.emit('start_round', rnd, link);
+        })
     });
 })
 

@@ -4,6 +4,6 @@ function start_round() {
     socket.emit('start_round', "")
 }
 
-socket.on('start_round', (id) => {
-    next_round(id)
+socket.on('start_round', (id, link) => {
+    next_round(id, link)
 })
