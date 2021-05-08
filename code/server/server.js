@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
 
     n_players += 1;
 
-    player_id = Math.floor(Math.random() * 2 ** 16);
+    var player_id = Math.floor(Math.random() * 2 ** 16);
 
     while (player_id in players) {
         player_id = Math.floor(Math.random() * 2 ** 16)
@@ -96,7 +96,7 @@ server.on('error', (err) => {
     console.error(err);
 })
 
-server.listen(5550, () => {
+server.listen(5050, () => {
     console.log('Server bereit');
     fs.readFile('data_control.json', 'utf8', function (err, data) {
         if (err) throw err;

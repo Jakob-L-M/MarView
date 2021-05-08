@@ -1,3 +1,6 @@
 data*
 *.ini
 *tmp*/*
+package-lock.json
+node_modules
+gcloud.js
