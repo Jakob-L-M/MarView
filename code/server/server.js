@@ -23,34 +23,27 @@ var n_players = 0
 var players = {}
 
 var n_players_guessed = 0
+var dest;
+var location;
+var fact;
 
 io.on('connection', (socket) => {
 
-    var dest;
-    var location;
-    var fact;
-
     n_players += 1;
 
-    player_id = Math.floor(Math.random() * 2**16);
-
-    console.log(player_id)
+    player_id = Math.floor(Math.random() * 2 ** 16);
 
     while (player_id in players) {
-        player_id =  Math.floor(Math.random() * 2**16)
+        player_id = Math.floor(Math.random() * 2 ** 16)
     }
 
-    players[player_id] = {id: player_id}
+    players[player_id] = { id: player_id }
 
-    console.log(`Current Players = ${n_players}`, players)
-
-    console.log('connection');
+    socket.emit('set_id', player_id)
 
     socket.on('disconnect', () => {
         n_players -= 1;
         delete players[player_id]
-        console.log(`Current Players = ${n_players}`, players)
-        console.log('user disconnected');
     });
 
     socket.on('start_round', () => {
@@ -66,16 +59,16 @@ io.on('connection', (socket) => {
         const name = locations[rnd]['name']
         const link = locations[rnd]['link']
 
-        
+
         gcloud.gcloud('11q8gVBJ7XPksi-L5Hd12a58QaCirdMOQ', 4096, '1').then(link => {
-            console.log(link)
             io.emit('start_round', link);
         })
     });
 
+
     socket.on('lock_guess', (marker) => {
-        let dist = coord_dist(dest, marker._latlng);
-        
+        let dist = util.coord_dist(dest, marker);
+
         // build result string
         let result = "";
         if (dist >= 1) {
@@ -86,12 +79,16 @@ io.on('connection', (socket) => {
 
         n_players_guessed += 1;
 
-        players[player_id]['marker'] = marker._latlng
+        players[player_id]['marker'] = marker
+        players[player_id]['dist'] = dist
 
-        if (n_players = n_players_guessed) {
-            // emit end round
+        console.log(player_id);
+
+        if (n_players == n_players_guessed) {
+            console.log('Lock', players, player_id)
+            io.emit('end_round', dest, players);
+            n_players_guessed = 0;
         }
-
     })
 })
 
@@ -99,10 +96,10 @@ server.on('error', (err) => {
     console.error(err);
 })
 
-server.listen(5050, () => {
+server.listen(5550, () => {
     console.log('Server bereit');
     fs.readFile('data_control.json', 'utf8', function (err, data) {
         if (err) throw err;
         locations = JSON.parse(data);
-      });
+    });
 })

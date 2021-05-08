@@ -1,8 +1,9 @@
 function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
   }
-  
-  function coord_dist(coord1, coord2) {
+
+module.exports = { 
+  coord_dist: function(coord1, coord2) {
        
     var lat1 = coord1[0];
     var lon1 = coord1[1];
@@ -22,3 +23,4 @@ function degreesToRadians(degrees) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     return earthRadiusKm * c;
   }
+}
