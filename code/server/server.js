@@ -8,7 +8,8 @@ var gcloud = require('./gcloud.js')
 var util = require('./utilities.js')
 
 const app = express();
-//number of pictures
+
+//json of locations
 var locations;
 
 app.use(express.static(`${__dirname}/..`));
@@ -68,14 +69,6 @@ io.on('connection', (socket) => {
 
     socket.on('lock_guess', (marker) => {
         let dist = util.coord_dist(dest, marker);
-
-        // build result string
-        let result = "";
-        if (dist >= 1) {
-            result = `${dist.toFixed(2)}km`
-        } else {
-            result = `${(dist * 1000).toFixed(1)}m`
-        }
 
         n_players_guessed += 1;
 

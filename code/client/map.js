@@ -90,9 +90,15 @@ function display_result_screen(dest_marker, players) {
         }
     }
 
+    let result = "";
+    let dist = players[socket_id]['dist'];
+        if (dist >= 1) {
+            result = `${dist.toFixed(2)}km`
+        } else {
+            result = `${(dist * 1000).toFixed(1)}m`
+        }
 
-
-    document.getElementById('test').innerHTML = `Marker ist ${players[socket_id]['dist']} vom Ziel entfernt`
+    document.getElementById('test').innerHTML = `Marker ist ${result} vom Ziel entfernt`
 }
 
 function next_round(id, link) {
