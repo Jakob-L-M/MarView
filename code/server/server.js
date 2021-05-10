@@ -39,12 +39,10 @@ io.on('connection', (socket) => {
 
     socket.emit('set_id', player_id)
 
-    io.emit('display_players', Object.keys(players));
-
     socket.on('disconnect', () => {
         n_players -= 1;
         delete players[player_id]
-        io.emit('display_players', Object.keys(players));
+        io.emit('display_players', players);
     });
 
     socket.on('start_round', () => {
@@ -82,6 +80,12 @@ io.on('connection', (socket) => {
             io.emit('end_round', dest, players);
             n_players_guessed = 0;
         }
+    })
+
+    socket.on('set_userdata', (username, color) => {
+        players[player_id]['username'] = username;
+        players[player_id]['color'] = color;
+        io.emit('display_players', players);
     })
 })
 
