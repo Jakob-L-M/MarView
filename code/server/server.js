@@ -1,8 +1,6 @@
 const http = require('http');
-var https = require('https');
 const express = require('express');
 const socketio = require('socket.io');
-const { text } = require('express');
 var fs = require('fs');
 var gcloud = require('./gcloud.js')
 var util = require('./utilities.js')
@@ -12,8 +10,7 @@ const app = express();
 //json of locations
 var locations;
 
-app.use(express.static(`${__dirname}/..`));
-app.use(express.static(`${__dirname}/../../`));
+app.use(express.static(`${__dirname}/../`));
 
 const server = http.createServer(app);
 const io = socketio(server)
