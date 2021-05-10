@@ -38,6 +38,8 @@ io.on('connection', (socket) => {
         player_id = Math.floor(Math.random() * 2 ** 16)
     }
 
+    console.log(player_id)
+
     players[player_id] = { id: player_id }
 
     socket.emit('set_id', player_id)

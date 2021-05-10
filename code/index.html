@@ -20,9 +20,9 @@
     <script language="javascript" type="text/javascript" src="lib/view360.panoviewer.pkgd.min.js"></script>
     <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
 
-    <script language="javascript" type="text/javascript" src="client/utilities.js"></script>
     <script language="javascript" type="text/javascript" src="client/client.js"></script>
     <script language="javascript" type="text/javascript" src="client/pano.js" defer></script>
+    <script language="javascript" type="text/javascript" src="client/ui.js" defer></script>
 </head>
 
 <body>
@@ -37,10 +37,9 @@
 
     <button id="guess_button" onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
 
-    <ul class='player_panels'>
-        <li><span class="letters" id="player1">Player1</span></li>
+    <ul id='player_panels' class='player_panels'>
     </ul>
-    
+
     <div id='result_screen' class="modal">
         <div class="modal-content">
             <p id="test"></p>

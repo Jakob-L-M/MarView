@@ -36,9 +36,10 @@
     width: 9.25%;
     position: fixed;
     bottom: 0;
-    right: 24.25%;
+    left: 0%;
     font-size: 16px;
     text-align: center;
+    list-style-type: none;
     background-color: #9c9e9c9c;
     border-radius: 25px;
     border: 2px solid #0b11037a;
