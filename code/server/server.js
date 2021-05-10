@@ -38,15 +38,16 @@ io.on('connection', (socket) => {
         player_id = Math.floor(Math.random() * 2 ** 16)
     }
 
-    console.log(player_id)
-
     players[player_id] = { id: player_id }
 
     socket.emit('set_id', player_id)
 
+    io.emit('display_players', Object.keys(players));
+
     socket.on('disconnect', () => {
         n_players -= 1;
         delete players[player_id]
+        io.emit('display_players', Object.keys(players));
     });
 
     socket.on('start_round', () => {

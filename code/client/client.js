@@ -21,3 +21,11 @@ socket.on('start_round', (link) => {
 socket.on('end_round', (dest_marker, players) => {
     display_result_screen(dest_marker, players);
 })
+
+socket.on('display_players', (player_ids) => {
+    clear_player_panels()
+    console.log(player_ids)
+    for (var i = 0; i < player_ids.length; i++) {
+        create_player_span(player_ids[i])
+    }
+});

@@ -7,3 +7,7 @@ function create_player_span(id) {
 
     document.getElementById('player_panels').appendChild(li)
 }
+
+function clear_player_panels() {
+    document.getElementById('player_panels').innerHTML = '';
+}

@@ -122,5 +122,4 @@ function clear_map(map) {
 function set_id(id) {
     console.log(id)
     socket_id = id;
-    create_player_span(id);
 }

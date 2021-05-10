@@ -31,17 +31,28 @@
     font-size: 16px;
 }
 
-.player_panels li{
-    height: 5%;
-    width: 9.25%;
-    position: fixed;
-    bottom: 0;
+#player_list {
+    position: absolute;
+    bottom: 0%;
     left: 0%;
+    width: 8%;
+}
+
+#player_list .player_panels {
+    position: relative;
+    margin-bottom: 0;
+    margin-left: -50%;
+    width: 100%;
+    list-style-type: none;
+    list-style-position: inside
+}
+
+#player_list .player_panels li{
+    height: 100%;
+    width: 100%;
     font-size: 16px;
     text-align: center;
-    list-style-type: none;
     background-color: #9c9e9c9c;
-    border-radius: 25px;
     border: 2px solid #0b11037a;
 }
 
