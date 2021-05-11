@@ -7,7 +7,7 @@
     right: 0;
 }
 
-#main_page #mapid { height: 45%;
+#main_page #mapid { height: 50%;
     width: 40%;
     position: fixed;
     bottom: 5%;
@@ -47,15 +47,15 @@
 
 #player_list {
     position: fixed;
-    bottom: 0%;
-    left: 0%;
+    bottom: 0;
+    left: 0;
     width: 8%;
 }
 
 #player_list .player_panels {
     position: relative;
     margin-bottom: 0;
-    margin-left: -50%;
+    margin-left: -40%;
     width: 100%;
     list-style-type: none;
     list-style-position: inside
