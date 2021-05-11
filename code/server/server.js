@@ -58,10 +58,7 @@ io.on('connection', (socket) => {
         const name = locations[rnd]['name']
         const link = locations[rnd]['link']
 
-
-        gcloud.gcloud('11q8gVBJ7XPksi-L5Hd12a58QaCirdMOQ', 4096, '1').then(link => {
-            io.emit('start_round', link);
-        })
+        io.emit('start_round', link);
     });
 
 
@@ -86,7 +83,7 @@ io.on('connection', (socket) => {
         players[player_id]['username'] = username;
         players[player_id]['color'] = color;
         io.emit('display_players', players);
-    })
+    });
 })
 
 server.on('error', (err) => {
