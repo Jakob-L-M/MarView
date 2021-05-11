@@ -20,9 +20,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(result_map);
 
 function lock_guess() {
-    console.log(socket_id)
-    if (curr_marker != undefined) {
+    if (curr_marker) {
         send_guess(curr_marker._latlng);
+        document.getElementById('guess_button').style.display = 'none'
     }
 }
 
@@ -104,6 +104,7 @@ function next_round(id, link) {
         });
     }
 
+    document.getElementById('guess_button').style.display = 'block'
     display_pano(id, link)
 }
 

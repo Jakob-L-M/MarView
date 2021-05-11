@@ -40,6 +40,11 @@
     font-size: 16px;
 }
 
+#guess_button {
+    display: none;
+    z-index: 2;
+}
+
 #player_list {
     position: fixed;
     bottom: 0%;
@@ -87,12 +92,12 @@
 
 #main_page #pano { 
     visibility: collapse;
-    height: 95%;
+    height: 100%;
     width: 100%;
     position: fixed;
-    bottom: 5%;
+    bottom: 0%;
     right: 0%;
-    z-index: 1;
+    z-index: -1;
 }
 
 #start_button {

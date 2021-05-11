@@ -27,9 +27,8 @@ var fact;
 
 io.on('connection', (socket) => {
 
-    n_players += 1;
-
     var player_id = Math.floor(Math.random() * 2 ** 16);
+    var is_playing = false;
 
     while (player_id in players) {
         player_id = Math.floor(Math.random() * 2 ** 16)
@@ -40,8 +39,15 @@ io.on('connection', (socket) => {
     socket.emit('set_id', player_id)
 
     socket.on('disconnect', () => {
-        n_players -= 1;
+        
+        if(is_playing) {
+            n_players -= 1;
+        }
+
+        // delete entry of player
         delete players[player_id]
+
+        // update display for all players
         io.emit('display_players', players);
     });
 
@@ -50,6 +56,8 @@ io.on('connection', (socket) => {
         n_pics = locations.length
 
         const rnd = Math.floor(Math.random() * n_pics);
+        
+        // access data
         dest = [locations[rnd]['lat'], locations[rnd]['lng']]
         location = locations[rnd]['location']
         fact = locations[rnd]['fact']
@@ -83,6 +91,8 @@ io.on('connection', (socket) => {
         players[player_id]['username'] = username;
         players[player_id]['color'] = color;
         io.emit('display_players', players);
+        is_playing = true;
+        n_players += 1;
     });
 })
 
@@ -91,7 +101,7 @@ server.on('error', (err) => {
 })
 
 server.listen(5050, () => {
-    console.log('Server bereit');
+    console.log('Ready');
     fs.readFile('data_control.json', 'utf8', function (err, data) {
         if (err) throw err;
         locations = JSON.parse(data);
