@@ -79,28 +79,30 @@ function display_result_screen(dest_marker, players) {
 
 function next_round(id, link) {
 
-    map = L.map(document.getElementById('mapid')).setView([50.80344938458088, 8.766699833424578], 11);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/outdoors-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoibWliYXNlciIsImEiOiJjamphdWZxeTgzMTBuM3BvaGdvdGhidDlzIn0.W6MiurHvSwBs0LvTfEtdrQ',
-    }).addTo(map);
-    map.on('click', (e) => {
-        if (curr_marker != undefined) {
-            curr_marker.setLatLng(e.latlng)
-        } else {
-            curr_marker = L.marker(e.latlng, {
-                icon: L.icon({
-                    iconUrl: `..//assets/${socket_color}.png`,
-                    iconSize: [32, 32],
-                    iconAnchor: [16, 16]
-                })
-            }).addTo(map);
-        }
-    });
+    if (!map) {
+        map = L.map(document.getElementById('mapid')).setView([50.80344938458088, 8.766699833424578], 11);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/outdoors-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoibWliYXNlciIsImEiOiJjamphdWZxeTgzMTBuM3BvaGdvdGhidDlzIn0.W6MiurHvSwBs0LvTfEtdrQ',
+        }).addTo(map);
+        map.on('click', (e) => {
+            if (curr_marker != undefined) {
+                curr_marker.setLatLng(e.latlng)
+            } else {
+                curr_marker = L.marker(e.latlng, {
+                    icon: L.icon({
+                        iconUrl: `..//assets/${socket_color}.png`,
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 16]
+                    })
+                }).addTo(map);
+            }
+        });
+    }
 
     display_pano(id, link)
 }
