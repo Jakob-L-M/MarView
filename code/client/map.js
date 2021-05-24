@@ -129,3 +129,7 @@ function set_id(id) {
 function set_color(color) {
     socket_color = color;
 }
+
+function get_color() {
+    return socket_color;
+}
