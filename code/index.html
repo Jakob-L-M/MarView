@@ -20,9 +20,9 @@
     <script language="javascript" type="text/javascript" src="lib/view360.panoviewer.pkgd.min.js"></script>
     <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
 
+    <script language="javascript" type="text/javascript" src="client/ui.js" defer></script>
     <script language="javascript" type="text/javascript" src="client/client.js"></script>
     <script language="javascript" type="text/javascript" src="client/pano.js" defer></script>
-    <script language="javascript" type="text/javascript" src="client/ui.js" defer></script>
 </head>
 
 <body>
@@ -54,9 +54,9 @@
     </div>
 
     <div id="login_page">
-        <h3 class="title">Wie ist dein Name?</h3>
-        <input id="username_input" type="text" maxlength="14" placeholder="Username"/>
-        <input id="color_input" type="text" maxlength="6" placeholder="Color"/>
+        <h3 class="title" id="welcome_text">MarView</h3>
+        <input id="username_input" type="text" maxlength="10" placeholder="Username"/>
+        <div id="color_buttons"></div>
         <button id = 'login_button'>Login</button>
     </div>
 </body>

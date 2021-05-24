@@ -24,3 +24,14 @@ document.getElementById('login_button').onclick = () => {
         document.getElementById('main_page').style.visibility = "visible";
     }
 }
+
+{
+    console.log("A")
+    const colors = ['000000', '3F51B5', '4CAF50', '9C27B0', '18FFFF', '673AB7', '795548', 'CDDC39', 'E91E63', 'F44336', 'FF9800', 'FFFFFF']
+    colors.forEach(color => {
+        var panel = document.createElement('button')
+        panel.className = 'color_button'
+        panel.style.backgroundColor = `#${color}`
+        document.getElementById("color_buttons").appendChild(panel)
+    })
+}

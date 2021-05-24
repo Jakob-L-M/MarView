@@ -18,6 +18,58 @@
     opacity: 0.6;
 }
 
+#login_page {
+    position: absolute;
+    height: 50%;
+    width: 25%;
+    position: fixed;
+    bottom: 25%;
+    right: 37.5%;
+    border: 1px solid #000000;
+}
+
+#login_page #welcome_text {
+    text-align: center;
+}
+
+#login_page #username_input {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;
+    width: 75%;
+    font-size:x-large;
+    border: 0px solid #000000;
+}
+
+#login_page #username_input:hover {
+    font-size:xx-large;
+    transition: 150ms;
+}
+
+#login_page #login_button {
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    left: 0%;
+    font-size: x-large;
+    border: 0px;
+    background: rgba(13, 107, 29, 0.616);
+}
+
+#login_page #color_buttons {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 25%;
+    right: 0%;
+}
+
+.color_button {
+    width: 25%;
+    height: 25%;
+}
+
 #main_page #mapid:hover {
     transform: scale(1);
     transform-origin: 100% 100%;
