@@ -19,10 +19,8 @@
   "author": "Jakob Leander Müller",
   "license": "ISC",
   "dependencies": {
-    "@egjs/view360": "^3.4.3",
     "express": "^4.17.1",
     "https": "^1.0.0",
-    "jquery": "^3.6.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
