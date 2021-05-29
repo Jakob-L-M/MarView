@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+const cors = require('cors');
 var fs = require('fs');
 var util = require('./lib/utilities.js')
 
@@ -10,6 +11,7 @@ const app = express();
 var locations;
 
 app.use(express.static(`${__dirname}`));
+app.use(cors());
 
 const server = http.createServer(app);
 const io = socketio(server)

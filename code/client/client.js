@@ -1,4 +1,4 @@
-var socket = io();
+var socket = io({transports: ['websocket', 'polling']});
 
 // this scrpit handels communication with the server
 
