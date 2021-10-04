@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('start_round', () => {
-        // number of availible locations
+        // number of available locations
         n_pics = locations.length
 
         const rnd = Math.floor(Math.random() * n_pics);

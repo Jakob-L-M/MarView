@@ -1,6 +1,6 @@
 var socket = io({transports: ['websocket', 'polling']});
 
-// this scrpit handels communication with the server
+// this script handels communication with the server
 
 function start_round() {
     document.getElementById('start_button').style.display = 'none'
