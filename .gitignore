@@ -1,4 +1,3 @@
-data*
 *.ini
 *tmp*/*
 package-lock.json
@@ -7,3 +6,4 @@ gcloud.js
 .vscode
 *.zip
 .iphynb_check*
+*.jpg
