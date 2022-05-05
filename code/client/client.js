@@ -2,7 +2,7 @@ var socket = io({transports: ['websocket', 'polling']});
 
 // this script handels communication with the server
 
-function start_round() {
+function request_new_round() {
     document.getElementById('start_button').style.display = 'none'
     socket.emit('start_round', "");
 }
@@ -29,7 +29,6 @@ socket.on('end_round', (dest_marker, players) => {
 
 socket.on('display_players', (players) => {
     clear_player_panels()
-    console.log(players)
     for (player in players) {
         if (players[player]['username']) {
             create_player_span(players[player]['username'], players[player]['color']);

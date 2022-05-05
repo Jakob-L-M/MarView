@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarView Project</title>
+    <title>MarView | by Jakob-L-M</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
-    <link rel="stylesheet" href="styles.css">
+    
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-
+    
+    <link rel="stylesheet" href="styles.css">
     <script src="/socket.io/socket.io.js"></script>
 
     <script language="javascript" type="text/javascript" src="lib/view360.panoviewer.pkgd.min.js"></script>
@@ -32,11 +33,11 @@
 
         <div id='mapid'></div>
 
-        <button id="start_button" onclick="start_round()" class="button">Start</button>
+        <button id="start_button" onclick="request_new_round()" class="button">Start</button>
 
         <script language="javascript" type="text/javascript" src="client/map.js" defer></script>
 
-        <button id="guess_button" onclick="lock_guess()" class="button">🔒 Einloggen 🔒</button>
+        <button id="guess_button" onclick="lock_guess()" class="button">Guess</button>
 
         <div id='player_list'>
             <ul id='player_panels' class='player_panels'>
@@ -49,7 +50,7 @@
                 <p id="test"></p>
             </div>
             <div id="result_map"></div>
-            <button id="next_button" onclick="start_round()" class="button">Nächste Runde</button>
+            <button id="next_button" onclick="request_new_round()" class="button">Next Round</button>
         </div>
     </div>
 
