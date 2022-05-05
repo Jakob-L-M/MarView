@@ -1,6 +1,5 @@
 const http = require('http');
 const express = require('express');
-const socketio = require('socket.io');
 const cors = require('cors');
 var fs = require('fs');
 var util = require('./lib/utilities.js')
@@ -13,8 +12,15 @@ var locations;
 app.use(express.static(`${__dirname}`));
 app.use(cors());
 
-const server = http.createServer(app);
-const io = socketio(server)
+const server = http.createServer(app).listen(5050, function() {
+    console.log("Express server listening on port 5050");
+    fs.readFile('data_control.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        locations = JSON.parse(data);
+    });
+	console.log('Ready');
+});
+const io = require('socket.io').listen(server)
 
 //number of players
 var n_players = 0
@@ -26,7 +32,7 @@ var dest;
 var location;
 var fact;
 
-io.on('connection', (socket) => {
+io.sockets.on('connection', (socket) => {
 
     var player_id = Math.floor(Math.random() * 2 ** 16);
     var is_playing = false;
@@ -99,12 +105,4 @@ io.on('connection', (socket) => {
 
 server.on('error', (err) => {
     console.error(err);
-})
-
-server.listen(5050, () => {
-    console.log('Ready');
-    fs.readFile('data_control.json', 'utf8', function (err, data) {
-        if (err) throw err;
-        locations = JSON.parse(data);
-    });
 })
