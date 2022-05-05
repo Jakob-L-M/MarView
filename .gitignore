@@ -5,4 +5,9 @@ node_modules
 .vscode
 *.zip
 .ipynb_checkpoints/
+
+# Dont track panos due to big size
 *.jpg
+
+# File that stores GPS-Info
+data_control.json
