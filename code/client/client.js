@@ -7,8 +7,12 @@ function request_new_round() {
     socket.emit('start_round', "");
 }
 
-function send_guess(marker) {
-    socket.emit('lock_guess', marker);
+function update_marker(marker) {
+    socket.emit('update_guess', marker)
+}
+
+function lock() {
+    socket.emit('lock_guess', true)
 }
 
 function send_userdata(username, color) {

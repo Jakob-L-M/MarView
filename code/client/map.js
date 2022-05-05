@@ -21,15 +21,13 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 function lock_guess() {
     if (curr_marker) {
-        send_guess(curr_marker._latlng);
+        update_marker(curr_marker._latlng);
+        lock();
         document.getElementById('guess_button').style.display = 'none'
     }
 }
 
 function display_result_screen(dest_marker, players) {
-
-    console.log(players)
-
     modal = document.getElementById('result_screen');
 
     modal.style.display = "block";
@@ -101,6 +99,7 @@ function next_round(id, link) {
                     })
                 }).addTo(map);
             }
+            update_marker(curr_marker._latlng)
         });
     }
 

@@ -81,14 +81,15 @@ io.sockets.on('connection', (socket) => {
         setTimeout(() => { end_round(round) }, 4000)
     });
 
-
-    socket.on('lock_guess', (marker) => {
-        let dist = util.coord_dist(dest, marker);
-
-        n_players_guessed += 1;
-
+    socket.on('update_guess', (marker) => {
         players[player_id]['marker'] = marker
-        players[player_id]['dist'] = dist
+    })
+
+
+    socket.on('lock_guess', (T) => {
+        let dist = util.coord_dist(dest, players[player_id]['marker']);
+        players[player_id]['dist'] = dist;
+        n_players_guessed += 1;
 
         console.log(player_id);
 
