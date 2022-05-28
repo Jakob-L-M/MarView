@@ -30,6 +30,8 @@
 
 #login_page #welcome_text {
     text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
 }
 
 #login_page #username_input {
@@ -55,7 +57,6 @@
     bottom: 0%;
     left: 0%;
     font-size: 100%;
-    border: 0px;
     background: rgba(13, 107, 29, 0.616);
 }
 
@@ -87,6 +88,7 @@
     right: 0;
     background-color: #1a8d1e;
     border: none;
+    border-radius: 5px;
     color: white;
     text-align: center;
     text-decoration: none;

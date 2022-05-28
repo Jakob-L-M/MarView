@@ -12,6 +12,11 @@ var locations;
 app.use(express.static(`${__dirname}`));
 app.use(cors());
 
+app.get('/game', (req, res) => {
+    console.log(req['query']['id'])
+    res.sendFile(`${__dirname}/index.html`)
+})
+
 const server = http.createServer(app).listen(5050, function() {
     console.log("Express server listening on port 5050");
     fs.readFile('data_control.json', 'utf8', function(err, data) {
@@ -20,7 +25,7 @@ const server = http.createServer(app).listen(5050, function() {
     });
     console.log('Ready');
 });
-const io = require('socket.io').listen(server)
+const io = require('socket.io')(server)
 
 //number of players
 var n_players = 0
@@ -45,17 +50,20 @@ io.sockets.on('connection', (socket) => {
 
     socket.emit('set_id', player_id)
 
+    console.log(`connection with id ${player_id}`)
+
     socket.on('disconnect', () => {
+        
+        console.log(`disconnected with id ${player_id}`)
 
         if (is_playing) {
             n_players -= 1;
+            // delete entry of player
+            delete players[player_id]
+
+            // update display for all players
+            io.emit('display_players', players);
         }
-
-        // delete entry of player
-        delete players[player_id]
-
-        // update display for all players
-        io.emit('display_players', players);
     });
 
     socket.on('start_round', () => {
